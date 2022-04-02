@@ -42,4 +42,15 @@ public class HideKeyboardModule extends ReactContextBaseJavaModule {
           promise.resolve(false);
         }
     }
+
+    @ReactMethod
+    public void showKeyboard(Promise promise){
+      try {
+        InputMethodManager show = (InputMethodManager) contexts.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        show.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        promise.resolve(true);
+      } catch(Exception e){
+        promise.resolve(false);
+      }
+    }
 }

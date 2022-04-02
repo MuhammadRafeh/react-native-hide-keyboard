@@ -9,14 +9,18 @@ const LINKING_ERROR =
 const HideKeyboard = NativeModules.HideKeyboard
   ? NativeModules.HideKeyboard
   : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+    {},
+    {
+      get() {
+        throw new Error(LINKING_ERROR);
+      },
+    }
+  );
 
 export function hideKeyboard(): Promise<boolean> {
   return HideKeyboard.hideKeyboard();
+}
+
+export function showKeyboard(): Promise<boolean> {
+  return HideKeyboard.showKeyboard();
 }
