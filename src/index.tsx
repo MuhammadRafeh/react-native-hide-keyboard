@@ -17,6 +17,6 @@ const HideKeyboard = NativeModules.HideKeyboard
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return HideKeyboard.multiply(a, b);
+export function hideKeyboard(): Promise<boolean> {
+  return HideKeyboard.hideKeyboard();
 }

@@ -1,6 +1,6 @@
 # react-native-hide-keyboard
 
-A React Native hide keyboard module is for hiding and showing the keyboard without blurring the textInput component
+A React Native hide keyboard module is for hiding and showing the keyboard without blurring the textInput component.
 
 ## Installation
 
