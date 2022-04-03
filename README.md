@@ -9,7 +9,7 @@ npm install react-native-hide-keyboard
 ```
 
 ## Demo
-<img src="https://s7.gifyu.com/images/demo650a21e2b09a956c.gif" width="40%">
+<img src="https://s7.gifyu.com/images/demo650a21e2b09a956c.gif" width="28%">
 
 ## Usage
 
