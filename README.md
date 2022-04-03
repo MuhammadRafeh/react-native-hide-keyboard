@@ -8,6 +8,9 @@ A React Native hide keyboard module is for hiding and showing the keyboard witho
 npm install react-native-hide-keyboard
 ```
 
+## Demo
+<img src="https://s7.gifyu.com/images/demo650a21e2b09a956c.gif" width="40%">
+
 ## Usage
 
 ```js
