@@ -1,5 +1,8 @@
 package com.reactnativehidekeyboard;
 
+import android.app.Activity;
+import android.view.inputmethod.InputMethodManager;
+
 import androidx.annotation.NonNull;
 
 import com.facebook.react.bridge.Promise;
@@ -11,9 +14,11 @@ import com.facebook.react.module.annotations.ReactModule;
 @ReactModule(name = HideKeyboardModule.NAME)
 public class HideKeyboardModule extends ReactContextBaseJavaModule {
     public static final String NAME = "HideKeyboard";
+    ReactApplicationContext contexts;
 
     public HideKeyboardModule(ReactApplicationContext reactContext) {
-        super(reactContext);
+      super(reactContext);
+      contexts = reactContext;
     }
 
     @Override
@@ -22,13 +27,30 @@ public class HideKeyboardModule extends ReactContextBaseJavaModule {
         return NAME;
     }
 
-
-    // Example method
-    // See https://reactnative.dev/docs/native-modules-android
     @ReactMethod
-    public void multiply(int a, int b, Promise promise) {
-        promise.resolve(a * b);
+    public void hideKeyboard(Promise promise){
+        try {
+          InputMethodManager inputMethodManager = (InputMethodManager) contexts.getSystemService(Activity.INPUT_METHOD_SERVICE);
+          if(inputMethodManager.isAcceptingText()){
+            inputMethodManager.hideSoftInputFromWindow(
+              getCurrentActivity().getCurrentFocus().getWindowToken(),
+              0
+            );
+          }
+          promise.resolve(true);
+        } catch (Exception e){
+          promise.resolve(false);
+        }
     }
 
-    public static native int nativeMultiply(int a, int b);
+    @ReactMethod
+    public void showKeyboard(Promise promise){
+      try {
+        InputMethodManager show = (InputMethodManager) contexts.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        show.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        promise.resolve(true);
+      } catch(Exception e){
+        promise.resolve(false);
+      }
+    }
 }
