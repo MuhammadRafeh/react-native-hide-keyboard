@@ -29,18 +29,16 @@ public class HideKeyboardModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void hideKeyboard(Promise promise){
-        try {
           InputMethodManager inputMethodManager = (InputMethodManager) contexts.getSystemService(Activity.INPUT_METHOD_SERVICE);
-          if(inputMethodManager.isAcceptingText()){
-            inputMethodManager.hideSoftInputFromWindow(
-              getCurrentActivity().getCurrentFocus().getWindowToken(),
-              0
-            );
+          View focusedView = getCurrentActivity().getCurrentFocus();
+          if (focusedView != null && inputMethodManager.isAcceptingText()) {
+              try {
+                  inputMethodManager.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
+                  promise.resolve(true);
+              } catch (NullPointerException ignored) {
+                  promise.resolve(false);
+              }
           }
-          promise.resolve(true);
-        } catch (Exception e){
-          promise.resolve(false);
-        }
     }
 
     @ReactMethod
