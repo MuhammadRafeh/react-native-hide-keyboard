@@ -1,6 +1,6 @@
 {
   "name": "react-native-hide-keyboard",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A React Native hide keyboard module is for hiding and showing the keyboard without blurring the textInput component",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
